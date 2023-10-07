@@ -1,0 +1,92 @@
+model Practica1
+
+class Empleado
+attributes
+nombre : String
+dni : String
+edad : Integer
+end
+
+class Director < TrabajadorBase
+end
+
+class Gerente < TrabajadorBase
+end
+
+class TrabajadorBase < Empleado
+end
+
+class Empresa
+attributes
+nombre : String
+nEmpleados : Integer
+productos : Integer
+valMinPedidos : Integer
+end
+
+class Producto
+attributes
+nombre : String
+precio : Integer
+ID : Integer
+end
+
+class Cliente
+attributes
+eurosGastados : Integer
+usuario : String
+contrasena : String
+end
+
+class Vip < Cliente
+end
+
+class Pedido
+attributes
+precioTotal : Integer
+fecha : String
+end
+
+--association trabajaEn between
+--Empleado [1] role empleado
+--Empresa [0..3] role trabajo
+--end
+
+associationclass trabajaEn between
+TrabajadorBase [1..*] role empleado
+Empresa [0..3] role trabajo
+attributes
+salario : Integer
+end
+
+association VendeProducto between
+Empresa[1] role vendedor
+Producto[1..*] role producto
+end
+
+composition ProductosEnUnPedido between
+Pedido[1] role productosDelPedido
+Producto[1..*] role dentroDelPedido
+end
+
+associationclass ProductoPedido between
+Pedido[1] role pedido
+Producto[1..*] role producto
+attributes
+nProducto : Integer
+end
+
+association EmpleadoEsVipDeEmpresa between
+Empleado[0..*] role esVip
+Vip[0..*] role empleadoVip
+end
+
+association clientesDeUnaEmpresa between
+Empresa[1..*] role tieneClientes
+Cliente[0..*] role usuarioDeEmpresa
+end
+
+association clienteHacePedido between
+Cliente[1..*] role comprador
+Pedido[1..*] role pedidoCliente
+end
