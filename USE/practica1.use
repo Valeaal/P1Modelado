@@ -7,10 +7,10 @@ dni : String
 edad : Integer
 end
 
-class Director < TrabajadorBase
+class Director < Empleado
 end
 
-class Gerente < TrabajadorBase
+class Gerente < Empleado
 end
 
 class TrabajadorBase < Empleado
@@ -41,6 +41,7 @@ end
 class Vip < Cliente
 end
 
+
 class Pedido
 attributes
 precioTotal : Integer
@@ -53,10 +54,20 @@ end
 --end
 
 associationclass trabajaEn between
-TrabajadorBase [1..*] role empleado
+Empleado [1..*] role empleado
 Empresa [0..3] role trabajo
 attributes
 salario : Integer
+end
+
+association Direccion between
+Director[1] role dirigida_por
+Empresa[1..*] role dirige
+end
+
+association Gerencia between
+Gerente [1] role supervisada_por
+Empresa [1..*] role supervisa
 end
 
 association VendeProducto between
@@ -69,16 +80,16 @@ Pedido[1] role productosDelPedido
 Producto[1..*] role dentroDelPedido
 end
 
+association EmpleadoEsVipDeEmpresa between
+Empleado[0..*] role esVip
+Vip[0..*] role empleadoVip
+end
+
 associationclass ProductoPedido between
 Pedido[1] role pedido
 Producto[1..*] role producto
 attributes
 nProducto : Integer
-end
-
-association EmpleadoEsVipDeEmpresa between
-Empleado[0..*] role esVip
-Vip[0..*] role empleadoVip
 end
 
 association clientesDeUnaEmpresa between
@@ -90,3 +101,22 @@ association clienteHacePedido between
 Cliente[1..*] role comprador
 Pedido[1..*] role pedidoCliente
 end
+
+constraints
+
+--En otro programa que no fuera USE, esto seria un subtipado de relacion
+context Director inv Director_Subtipado:
+    self.trabajaEn->notEmpty() and 
+    self.trabajaEn->forAll(empresas_de_un_trabajador | 
+        self.dirige->exists(empresas_que_dirige | empresas_que_dirige = empresas_de_un_trabajador)
+    )
+
+context Gerente inv Gerente_Subtipado:
+    self.trabajaEn->notEmpty() and 
+    self.trabajaEn->forAll(empresas_de_un_trabajador | 
+        self.supervisa->exists(empresas_que_supervisa | empresas_que_supervisa = empresas_de_un_trabajador)
+    )
+
+
+
+
