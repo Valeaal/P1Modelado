@@ -85,13 +85,6 @@ Empleado[0..*] role esVip
 Vip[0..*] role empleadoVip
 end
 
-associationclass ProductoPedido between
-Pedido[1] role pedido
-Producto[1..*] role producto
-attributes
-nProducto : Integer
-end
-
 association clientesDeUnaEmpresa between
 Empresa[1..*] role tieneClientes
 Cliente[0..*] role usuarioDeEmpresa
@@ -111,6 +104,7 @@ context Director inv Director_Subtipado:
         self.dirige->exists(empresas_que_dirige | empresas_que_dirige = empresas_de_un_trabajador)
     )
 
+--En otro programa que no fuera USE, esto seria un subtipado de relacion
 context Gerente inv Gerente_Subtipado:
     self.trabajaEn->notEmpty() and 
     self.trabajaEn->forAll(empresas_de_un_trabajador | 
