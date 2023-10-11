@@ -1,0 +1,122 @@
+model Practica1
+
+class Empleado
+attributes
+nombre : String
+dni : String
+edad : Integer
+end
+
+class Director < Empleado
+end
+
+class Gerente < Empleado
+end
+
+class TrabajadorBase < Empleado
+end
+
+class Empresa
+attributes
+nombre : String
+nEmpleados : Integer
+productos : Integer
+valMinPedidos : Integer
+end
+
+class Producto
+attributes
+nombre : String
+precio : Integer
+ID : Integer
+end
+
+class Cliente
+attributes
+eurosGastados : Integer
+usuario : String
+contrasena : String
+end
+
+class Vip < Cliente
+end
+
+
+class Pedido
+attributes
+precioTotal : Integer
+fecha : String
+end
+
+--association trabajaEn between
+--Empleado [1] role empleado
+--Empresa [0..3] role trabajo
+--end
+
+associationclass trabajaEn between
+Empleado [1..*] role empleado
+Empresa [0..3] role trabajo
+attributes
+salario : Integer
+end
+
+association Direccion between
+Director[1] role dirigida_por
+Empresa[1..*] role dirige
+end
+
+association Gerencia between
+Gerente [1] role supervisada_por
+Empresa [1..*] role supervisa
+end
+
+association VendeProducto between
+Empresa[1] role vendedor
+Producto[1..*] role producto
+end
+
+composition ProductosEnUnPedido between
+Pedido[1] role productosDelPedido
+Producto[1..*] role dentroDelPedido
+end
+
+association EmpleadoEsVipDeEmpresa between
+Empleado[0..*] role esVip
+Vip[0..*] role empleadoVip
+end
+
+associationclass ProductoPedido between
+Pedido[1] role pedido
+Producto[1..*] role producto
+attributes
+nProducto : Integer
+end
+
+association clientesDeUnaEmpresa between
+Empresa[1..*] role tieneClientes
+Cliente[0..*] role usuarioDeEmpresa
+end
+
+association clienteHacePedido between
+Cliente[1..*] role comprador
+Pedido[1..*] role pedidoCliente
+end
+
+constraints
+
+--En otro programa que no fuera USE, esto seria un subtipado de relacion
+context Director inv Director_Subtipado:
+    self.trabajaEn->notEmpty() and 
+    self.trabajaEn->forAll(empresas_de_un_trabajador | 
+        self.dirige->exists(empresas_que_dirige | empresas_que_dirige = empresas_de_un_trabajador)
+    )
+
+context Gerente inv Gerente_Subtipado:
+    self.trabajaEn->notEmpty() and 
+    self.trabajaEn->forAll(empresas_de_un_trabajador | 
+        self.supervisa->exists(empresas_que_supervisa | empresas_que_supervisa = empresas_de_un_trabajador)
+    )
+
+
+
+
