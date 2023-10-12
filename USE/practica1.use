@@ -45,8 +45,8 @@ class Pedido
 attributes
 fecha : String
 --El precio del pedido se calcula automaticamente
-precioTotal : Real derive :
-self.precioTotal = self.dentroDelPedido->collect(p | p -> VendeProducto.precio)->sum()
+--precioTotal : Real derive :
+--self.precioTotal = self.dentroDelPedido->collect(p | p -> VendeProducto.precio)->sum()
 --Problemas: no podemos aplicar flechita a un producto individual (p), al usar . nos sale operacion no existente.
 --Posible solucion: Cambiar el enfoque y hacer un atributo derivado en producto de forma que: el ID pueda repetirse, con indiferencia del precio y la empresa. Coger el precio de ahí.
 end
@@ -65,12 +65,12 @@ end
 
 association Direccion between
 Director[1] role dirigida_por
-Empresa[1..*] role dirige
+Empresa[1..3] role dirige
 end
 
 association Gerencia between
 Gerente [1] role supervisada_por
-Empresa [1..*] role supervisa
+Empresa [1..3] role supervisa
 end
 
 associationclass VendeProducto between
@@ -78,9 +78,10 @@ Empresa[1..*] role vendedor
 Producto[1..*] role producto
 attributes
 precio : Integer
+stock : Integer
 end
 
-composition ProductosEnUnPedido between
+aggregation ProductosEnUnPedido between
 Pedido[1..*] role pedido_al_que_pertenece
 Producto[1..*] role dentroDelPedido
 end
