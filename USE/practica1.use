@@ -27,7 +27,6 @@ end
 class Producto
 attributes
 nombre : String
-precio : Integer
 ID : Integer
 end
 
@@ -44,13 +43,17 @@ end
 
 class Pedido
 attributes
-precioTotal : Integer
 fecha : String
+--El precio del pedido se calcula automaticamente
+--precioTotal : Real derive :
+--self.precioTotal = self.dentroDelPedido->collect(p | p -> VendeProducto.precio)->sum()
+--Problemas: no podemos aplicar flechita a un producto individual (p), al usar . nos sale operacion no existente.
+--Posible solucion: Cambiar el enfoque y hacer un atributo derivado en producto de forma que: el ID pueda repetirse, con indiferencia del precio y la empresa. Coger el precio de ahí.
 end
 
 --association trabajaEn between
 --Empleado [1] role empleado
---Empresa [0..3] role trabajo
+--Empresa [1..3] role trabajo
 --end
 
 associationclass trabajaEn between
@@ -62,34 +65,30 @@ end
 
 association Direccion between
 Director[1] role dirigida_por
-Empresa[1..*] role dirige
+Empresa[1..3] role dirige
 end
 
 association Gerencia between
 Gerente [1] role supervisada_por
-Empresa [1..*] role supervisa
+Empresa [1..3] role supervisa
 end
 
-association VendeProducto between
-Empresa[1] role vendedor
+associationclass VendeProducto between
+Empresa[1..*] role vendedor
 Producto[1..*] role producto
+attributes
+precio : Integer
+stock : Integer
 end
 
-composition ProductosEnUnPedido between
-Pedido[1] role productosDelPedido
+aggregation ProductosEnUnPedido between
+Pedido[1..*] role pedido_al_que_pertenece
 Producto[1..*] role dentroDelPedido
 end
 
 association EmpleadoEsVipDeEmpresa between
 Empleado[0..*] role esVip
 Vip[0..*] role empleadoVip
-end
-
-associationclass ProductoPedido between
-Pedido[1] role pedido
-Producto[1..*] role producto
-attributes
-nProducto : Integer
 end
 
 association clientesDeUnaEmpresa between
@@ -104,18 +103,31 @@ end
 
 constraints
 
---En otro programa que no fuera USE, esto seria un subtipado de relacion
+--En otro programa que no fuera USE, esto seria un subtipado de relacion trabajaEn
+--Si un director dirige una empresa, en alguna de las empresas en las que trabaja tiene que figurar el como director
 context Director inv Director_Subtipado:
     self.trabajaEn->notEmpty() and 
     self.trabajaEn->forAll(empresas_de_un_trabajador | 
         self.dirige->exists(empresas_que_dirige | empresas_que_dirige = empresas_de_un_trabajador)
     )
 
+--En otro programa que no fuera USE, esto seria un subtipado de relacion
+--Si un gerente regenta una empresa, en alguna de las empresas en las que trabaja tiene que figurar el como gerente
 context Gerente inv Gerente_Subtipado:
     self.trabajaEn->notEmpty() and 
     self.trabajaEn->forAll(empresas_de_un_trabajador | 
         self.supervisa->exists(empresas_que_supervisa | empresas_que_supervisa = empresas_de_un_trabajador)
     )
+
+--Un director tiene que dirigir, si no seria trabajador base
+context Director inv Director_dirige:
+    self.dirige -> notEmpty()
+
+--Un gerente tiene que supervisar, si no seria trabajador base
+context Gerente inv Gerente_supervisa:
+    self.supervisa -> notEmpty()
+
+
 
 
 
