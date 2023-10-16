@@ -5,6 +5,7 @@ attributes
 nombre : String
 dni : String
 edad : Integer
+trabaja : trabajaEn
 end
 
 class Director < Empleado
@@ -127,8 +128,24 @@ context Director inv Director_dirige:
 context Gerente inv Gerente_supervisa:
     self.supervisa -> notEmpty()
 
+--constraints carla
 
+-- Un director cobra más que un gerente dentro de una misma empresa
+context Empresa inv directorCobraMasQueGerente:
+self.dirigida_por.trabaja.salario > self.supervisada_por.trabaja.salario
 
+--Un gerente cobra más que los trabajadores base dentro de una misma empresa
+
+context Empresa inv gerenteCobraMasQueTrabajadorBase:
+self.supervisada_por->notEmpty() and 
+self.supervisada_por.trabaja.salario > self.empleado->select(oclIsTypeOf(TrabajadorBase)).trabaja.salario->max()
+
+--Un director cobra más que los trabajadores base dentro de una misma empresa (esta restricción y la de arriba podrían unirse
+--en una sola, ya lo bichearé, pero dividiendola se queda mas sencilla)
+
+context Empresa inv directorCobraMasQueTrabajadorBase:
+self.dirigida_por->notEmpty() and 
+self.dirigida_por.trabaja.salario > self.empleado->select(oclIsTypeOf(TrabajadorBase)).trabaja.salario->max()
 
 
 
