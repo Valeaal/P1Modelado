@@ -29,6 +29,7 @@ class Producto
 attributes
 nombre : String
 ID : Integer
+precio : VendeProducto
 end
 
 class Cliente
@@ -146,6 +147,19 @@ self.supervisada_por.trabaja.salario > self.empleado->select(oclIsTypeOf(Trabaja
 context Empresa inv directorCobraMasQueTrabajadorBase:
 self.dirigida_por->notEmpty() and 
 self.dirigida_por.trabaja.salario > self.empleado->select(oclIsTypeOf(TrabajadorBase)).trabaja.salario->max()
+
+--constraints alba
+
+-- Un empleado debe ser mayor de edad
+context Empleado inv empleadoEdadMayorDeEdad:
+self.edad >= 18
+
+-- Un pedido debe tener un valor mínimo
+context Pedido inv pedidoValorMinimo:
+-- esto da el problema de no poder aplicar la flecha a un producto individual, además el any() no se puede usar en este caso
+--(self.dentroDelPedido->collect(p | p -> VendeProducto.precio)->sum()) >= self.dentroDelPedido->collect(p | p -> VendeProducto.valMinPedidos)->any()
+
+self.dentroDelPedido->iterate(p ; acumulador : Integer = 0 | acumulador + p.precio.precio) >= self.dentroDelPedido.vendedor.valMinPedidos->iterate(e; acumulador: Integer = null | e)
 
 
 
