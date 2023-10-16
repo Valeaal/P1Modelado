@@ -161,5 +161,9 @@ context Pedido inv pedidoValorMinimo:
 
 self.dentroDelPedido->iterate(p ; acumulador : Integer = 0 | acumulador + p.precio.precio) >= self.dentroDelPedido.vendedor.valMinPedidos->iterate(e; acumulador: Integer = null | e)
 
+-- Producto pedido debe estar en stock
+context Pedido inv productoEnStock:
+(self.dentroDelPedido->iterate(p; acumulador : Integer = 0 | if p.precio.stock >= 1 then acumulador +1 else acumulador endif)) = self.dentroDelPedido -> size()
+
 
 
