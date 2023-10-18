@@ -30,6 +30,7 @@ attributes
 nombre : String
 ID : Integer
 precio : VendeProducto
+unidades : ProductoPedido
 end
 
 class Cliente
