@@ -135,8 +135,14 @@ context Gerente inv Gerente_supervisa:
 --constraints carla
 
 -- Un director cobra más que un gerente dentro de una misma empresa
-context Empresa inv directorCobraMasQueGerente:
-self.dirigida_por.trabaja.salario > self.supervisada_por.trabaja.salario
+--context Empresa inv directorCobraMasQueGerente:
+--self.dirigida_por.trabaja.salario > self.supervisada_por.trabaja.salario
+
+-- Un director cobra más que un gerente dentro de una misma empresa 2 como el profe dice
+context Director inv directorCobraMasQueGerente:
+self.trabajaEn.salario->asSequence()->max() > self.dirige.supervisada_por.trabajaEn.salario->asSequence()->max()
+
+--self.dirigida_por.trabajaEn->asSequence()->max().salario
 
 --Un gerente cobra más que los trabajadores base dentro de una misma empresa
 
