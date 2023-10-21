@@ -5,7 +5,6 @@ attributes
 nombre : String
 dni : String
 edad : Integer
-trabaja : trabajaEn
 end
 
 class Director < Empleado
@@ -47,6 +46,9 @@ end
 class Pedido
 attributes
 fecha : String
+--precioTotal : Real derive : (self.dentroDelPedido.precio.precio->sum() * self.unidades.unidades)
+--precioTotal : Real derive : (self.dentroDelPedido.precio.precio->sum() * self.ProductoPedido.unidades.asSequence()->first())
+--precioTotal: Real = (self.dentroDelPedido.precio->sum() * self.ProductoPedido.unidades.asSequence()->first())
 --El precio del pedido se calcula automaticamente
 --precioTotal : Real derive :
 --self.precioTotal = self.dentroDelPedido->collect(p | p -> VendeProducto.precio)->sum()
@@ -134,34 +136,54 @@ context Gerente inv Gerente_supervisa:
 
 --constraints carla
 
--- Un director cobra más que un gerente dentro de una misma empresa
---context Empresa inv directorCobraMasQueGerente:
---self.dirigida_por.trabaja.salario > self.supervisada_por.trabaja.salario
-
 -- Un director cobra más que un gerente dentro de una misma empresa 2 como el profe dice
 context Director inv directorCobraMasQueGerente:
 self.trabajaEn.salario->asSequence()->max() > self.dirige.supervisada_por.trabajaEn.salario->asSequence()->max()
 
---self.dirigida_por.trabajaEn->asSequence()->max().salario
-
 --Un gerente cobra más que los trabajadores base dentro de una misma empresa
+context Gerente inv gerenteCobraMasQueTrabajadoresBase:
+self.trabajaEn.salario->asSequence()->max() >
+self.supervisa.empleado->select(oclIsTypeOf(TrabajadorBase)).trabajaEn.salario->asSequence()->max()
 
-context Empresa inv gerenteCobraMasQueTrabajadorBase:
-self.supervisada_por->notEmpty() and 
-self.supervisada_por.trabaja.salario > self.empleado->select(oclIsTypeOf(TrabajadorBase)).trabaja.salario->max()
-
---Un director cobra más que los trabajadores base dentro de una misma empresa (esta restricción y la de arriba podrían unirse
+--Un director cobra más que los trabajadores base dentro de una misma empresa
+--(esta restricción y la de arriba podrían unirse
 --en una sola, ya lo bichearé, pero dividiendola se queda mas sencilla)
+context Director inv directorCobraMasQueTrabajadoresBase:
+self.trabajaEn.salario->asSequence()->max() > 
+self.dirige.empleado->select(oclIsTypeOf(TrabajadorBase)).trabajaEn.salario->asSequence()->max()
 
-context Empresa inv directorCobraMasQueTrabajadorBase:
-self.dirigida_por->notEmpty() and 
-self.dirigida_por.trabaja.salario > self.empleado->select(oclIsTypeOf(TrabajadorBase)).trabaja.salario->max()
+--un empleado es vip de su propia empresa
+--(no estoy segura de si esta restricción hay que añadirla, quizás se entiende con solo el diagrama)
+context Empleado inv empleadoEsVipDeSuPropiaEmpresa:
+self.trabajo->forAll(empresa | empresa.usuarioDeEmpresa->select(oclIsTypeOf(Vip))->includes(self))
+
+
+--cliente es vip si ha realizado un pedido de más de 1000 euros
+--context Cliente inv clienteEsVipDeUnaEmpresaSiHaceUnPedidoMayorDe1000Euros:
+--self.pedidoCliente
+
+--si es vip, tiene un 10% de descuento en todos sus nuevos pedidos
+
+--si un empleado de una empresa hace un pedido, tiene un 10% de descuento
+
+--Un director no puede ser gerente de su misma empresa (esto no sabría hacerlo, consultar)
+
+--nadie puede hacer un pedido de artículos que no estén en el almacén
+
+--cuando se realiza un pedido, desaparece del almacén (se resta 1 al stock supongo)
+
+--una misma persona no puede tener artículos de más de 10 tipos de productos distintos, independientemente de
+--la empresa en donde los compró
 
 --constraints alba
 
 -- Un empleado debe ser mayor de edad
 context Empleado inv empleadoEdadMayorDeEdad:
 self.edad >= 18
+
+--Un pedido debe tener un valor minimo
+--context Pedido inv pedidoValorMinimo2:
+--self.dentroDelPedido->iterate(producto ; acumulador : Integer = 0 | acumulador + producto)
 
 -- Un pedido debe tener un valor mínimo
 context Pedido inv pedidoValorMinimo:
@@ -173,6 +195,5 @@ self.dentroDelPedido->iterate(p ; acumulador : Integer = 0 | acumulador + p.prec
 -- Producto pedido debe estar en stock
 context Pedido inv productoEnStock:
 (self.dentroDelPedido->iterate(p; acumulador : Integer = 0 | if p.precio.stock >= 1 then acumulador +1 else acumulador endif)) = self.dentroDelPedido -> size()
-
 
 
