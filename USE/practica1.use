@@ -28,8 +28,6 @@ class Producto
 attributes
 nombre : String
 ID : Integer
-precio : vendeProducto
-unidades : productoPedido
 end
 
 class Cliente
@@ -46,7 +44,7 @@ end
 class Pedido
 attributes
 fecha : String
-precioTotal2 : Real derive :
+precioTotal : Real derive :
 self.dentroDelPedido->iterate(producto ; acumulador : Integer = 0 | acumulador + (producto.productoPedido.unidades->sum() * producto.vendeProducto.precio->sum()))
 end
 
@@ -128,8 +126,6 @@ context Director inv Director_dirige:
 context Gerente inv Gerente_supervisa:
     self.supervisa -> notEmpty()
 
---constraints carla
-
 -- Un director cobra más que un gerente dentro de una misma empresa 2 como el profe dice
 context Director inv directorCobraMasQueGerente:
 self.trabajaEn.salario->asSequence()->max() > self.dirige.supervisada_por.trabajaEn.salario->asSequence()->max()
@@ -164,38 +160,54 @@ self.trabajo->forAll(empresa | empresa.usuarioDeEmpresa->select(oclIsTypeOf(Vip)
 --Un director no puede ser gerente de su misma empresa (esto no sabría hacerlo, consultar)
 
 --nadie puede hacer un pedido de artículos que no estén en el almacén
-
+context Cliente inv clienteNoPuedePedirArticulosQueNoEstenEnAlmacenOQuePidaMasProductosQueLosExistentes:  
+self.pedidoCliente->forAll(pedido | pedido.dentroDelPedido->forAll(producto |
+            producto.vendedor.vendeProducto->exists(p | p.stock >= 0 and p.stock<>null
+            implies producto.productoPedido->exists(e | e.unidades <= p.stock) )))
 --cuando se realiza un pedido, desaparece del almacén (se resta 1 al stock supongo)
 
 --una misma persona no puede tener artículos de más de 10 tipos de productos distintos, independientemente de
 --la empresa en donde los compró
 
---constraints alba
+context Cliente inv clienteNoPuedeTenerMasDe10Articulos:
+self.pedidoCliente->forAll(pedido |
+        let sumaUnidades = pedido.dentroDelPedido->collect(producto | producto.productoPedido.unidades)->sum() 
+        in
+        sumaUnidades <= 10)
 
 -- Un empleado debe ser mayor de edad
 context Empleado inv empleadoEdadMayorDeEdad:
 self.edad >= 18
 
 --Un pedido debe tener un valor minimo
+context Pedido inv pedidoValorMinimo:
+self.precioTotal >= self.dentroDelPedido.vendedor.valMinPedidos->asSequence()->first()
+--podemos poner first() en el valMinPedidos porque aunque se lea como una secuencia, un pedido
+--va a pertenecer exclusivamente a un solo vendedor. no puede haber un mismo pedido de dos vendedores distintos
 
 --esto no funciona bien, porque no cuenta con que puedes pedir mas unidades de un mismo producto y asi llegar
 --al tope del valor minimo. tendriamos que poner un atributo precioTotal en pedido y comprobar que ese precio total
 --es mayor o igual al precio minimo que impone la empresa
 --la sintaxis de pedidoValorMinimo2 es la que nos dijo el profe que era mejor implementar
-context Pedido inv pedidoValorMinimo2:
-self.dentroDelPedido->iterate(producto ; acumulador : Integer = 0 | acumulador + producto.vendeProducto.precio->asSequence()->first()) >=
-self.dentroDelPedido.vendedor.valMinPedidos->iterate(e; acumulador: Integer = null | e)
 
+--context Pedido inv pedidoValorMinimo2:
+--self.dentroDelPedido->iterate(producto ; acumulador : Integer = 0 | acumulador + producto.vendeProducto.precio->asSequence()->first()) >=
+--self.dentroDelPedido.vendedor.valMinPedidos->iterate(e; acumulador: Integer = null | e)
 
--- Un pedido debe tener un valor mínimo
-context Pedido inv pedidoValorMinimo:
--- esto da el problema de no poder aplicar la flecha a un producto individual, además el any() no se puede usar en este caso
---(self.dentroDelPedido->collect(p | p -> VendeProducto.precio)->sum()) >= self.dentroDelPedido->collect(p | p -> VendeProducto.valMinPedidos)->any()
+--self.dentroDelPedido->iterate(p ; acumulador : Integer = 0 | acumulador + p.precio.precio) >= self.dentroDelPedido.vendedor.valMinPedidos->iterate(e; acumulador: Integer = null | e)
+--self.dirige->exists(empresas_que_dirige | empresas_que_dirige = empresas_de_un_trabajador)
 
-self.dentroDelPedido->iterate(p ; acumulador : Integer = 0 | acumulador + p.precio.precio) >= self.dentroDelPedido.vendedor.valMinPedidos->iterate(e; acumulador: Integer = null | e)
-
+--Producto pedido debe estar en stock
+context Pedido inv productoEnStock2:
+(self.dentroDelPedido->iterate(producto; acumulador : Integer = 0 | if 
+producto.vendeProducto->exists(empresa | empresa.producto.pedido_al_que_pertenece->includes(self)) and
+producto.vendeProducto->select(empresa | empresa.producto.pedido_al_que_pertenece->includes(self)).stock->asSequence()->first >=1
+then acumulador +1 else acumulador endif)) = self.dentroDelPedido->size()
+--producto.vendeProducto.stock->asSequence()->first >= 1
 -- Producto pedido debe estar en stock
-context Pedido inv productoEnStock:
-(self.dentroDelPedido->iterate(p; acumulador : Integer = 0 | if p.precio.stock >= 1 then acumulador +1 else acumulador endif)) = self.dentroDelPedido -> size()
 
+--context Pedido inv productoEnStock:
+--(self.dentroDelPedido->iterate(p; acumulador : Integer = 0 | if p.precio.stock >= 1 then acumulador +1 else acumulador endif)) = self.dentroDelPedido -> size()
+
+--no puedes pedir 0 unidades de un producto
 
