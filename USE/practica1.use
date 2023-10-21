@@ -45,13 +45,11 @@ class Pedido
 attributes
 fecha : String
 precioTotal : Real derive :
-self.dentroDelPedido->iterate(producto ; acumulador : Integer = 0 | acumulador + (producto.productoPedido.unidades->sum() * producto.vendeProducto.precio->sum()))
+self.dentroDelPedido->iterate(producto ; acumulador : Integer = 0 | 
+acumulador + (producto.productoPedido.unidades->sum() * producto.vendeProducto.precio->sum())) - 
+if (self.comprador->exists(cliente | cliente.oclIsTypeOf(Vip))) then (self.dentroDelPedido->iterate(producto ; acumulador : Integer = 0 |
+acumulador + (producto.productoPedido.unidades->sum() * producto.vendeProducto.precio->sum())) * 0.1) else 0 endif
 end
-
---association trabajaEn between
---Empleado [1] role empleado
---Empresa [1..3] role trabajo
---end
 
 associationclass trabajaEn between
 Empleado [1..*] role empleado
@@ -86,8 +84,8 @@ unidades : Integer
 end
 
 association EmpleadoEsVipDeEmpresa between
-Empleado[0..1] role esVip
-Vip[1] role empleadoVip
+Empleado[0..*] role esVip
+Vip[0..*] role empleadoVip
 end
 
 association clientesDeUnaEmpresa between
@@ -148,26 +146,15 @@ self.dirige.empleado->select(oclIsTypeOf(TrabajadorBase)).trabajaEn.salario->asS
 context Empleado inv empleadoEsVipDeSuPropiaEmpresa:
 self.trabajo->forAll(empresa | empresa.usuarioDeEmpresa->select(oclIsTypeOf(Vip))->includes(self))
 
-
 --cliente es vip si ha realizado un pedido de más de 1000 euros
 context Vip inv clienteVip1000:
 self.oclIsTypeOf(Vip) and self.eurosGastados > 1000
-
---si es vip, tiene un 10% de descuento en todos sus nuevos pedidos
-context Vip inv clienteVipDescuento:
-self.oclIsTypeOf(Vip) and self.pedidoCliente -> forAll(pedido | pedido.precioTotal = pedido.precioTotal * 0.9)
-
---si un empleado de una empresa hace un pedido, tiene un 10% de descuento
-
---Un director no puede ser gerente de su misma empresa (esto no sabría hacerlo, consultar)
 
 --nadie puede hacer un pedido de artículos que no estén en el almacén
 context Cliente inv clienteNoPuedePedirArticulosQueNoEstenEnAlmacenOQuePidaMasProductosQueLosExistentes:  
 self.pedidoCliente->forAll(pedido | pedido.dentroDelPedido->forAll(producto |
             producto.vendedor.vendeProducto->exists(p | p.stock >= 0 and p.stock<>null
             implies producto.productoPedido->exists(e | e.unidades <= p.stock) )))
-
-
 --cuando se realiza un pedido, desaparece del almacén (se resta 1 al stock supongo)
 
 --una misma persona no puede tener artículos de más de 10 tipos de productos distintos, independientemente de
@@ -185,33 +172,16 @@ self.edad >= 18
 
 --Un pedido debe tener un valor minimo
 context Pedido inv pedidoValorMinimo:
-self.precioTotal >= self.dentroDelPedido.vendedor.valMinPedidos->asSequence()->first()
+--self.precioTotal >= self.dentroDelPedido.vendedor.valMinPedidos->asSequence()->first()
+self.precioTotal >= self.dentroDelPedido.vendedor->select(empresa | empresa.producto.pedido_al_que_pertenece->includes(self)).valMinPedidos->asSequence()->first()
 --podemos poner first() en el valMinPedidos porque aunque se lea como una secuencia, un pedido
 --va a pertenecer exclusivamente a un solo vendedor. no puede haber un mismo pedido de dos vendedores distintos
 
---esto no funciona bien, porque no cuenta con que puedes pedir mas unidades de un mismo producto y asi llegar
---al tope del valor minimo. tendriamos que poner un atributo precioTotal en pedido y comprobar que ese precio total
---es mayor o igual al precio minimo que impone la empresa
---la sintaxis de pedidoValorMinimo2 es la que nos dijo el profe que era mejor implementar
-
---context Pedido inv pedidoValorMinimo2:
---self.dentroDelPedido->iterate(producto ; acumulador : Integer = 0 | acumulador + producto.vendeProducto.precio->asSequence()->first()) >=
---self.dentroDelPedido.vendedor.valMinPedidos->iterate(e; acumulador: Integer = null | e)
-
---self.dentroDelPedido->iterate(p ; acumulador : Integer = 0 | acumulador + p.precio.precio) >= self.dentroDelPedido.vendedor.valMinPedidos->iterate(e; acumulador: Integer = null | e)
---self.dirige->exists(empresas_que_dirige | empresas_que_dirige = empresas_de_un_trabajador)
-
 --Producto pedido debe estar en stock
-context Pedido inv productoEnStock2:
+context Pedido inv productoEnStock:
 (self.dentroDelPedido->iterate(producto; acumulador : Integer = 0 | if 
 producto.vendeProducto->exists(empresa | empresa.producto.pedido_al_que_pertenece->includes(self)) and
 producto.vendeProducto->select(empresa | empresa.producto.pedido_al_que_pertenece->includes(self)).stock->asSequence()->first >=1
 then acumulador +1 else acumulador endif)) = self.dentroDelPedido->size()
---producto.vendeProducto.stock->asSequence()->first >= 1
--- Producto pedido debe estar en stock
-
---context Pedido inv productoEnStock:
---(self.dentroDelPedido->iterate(p; acumulador : Integer = 0 | if p.precio.stock >= 1 then acumulador +1 else acumulador endif)) = self.dentroDelPedido -> size()
 
 --no puedes pedir 0 unidades de un producto
-
