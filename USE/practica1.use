@@ -86,8 +86,8 @@ unidades : Integer
 end
 
 association EmpleadoEsVipDeEmpresa between
-Empleado[0..*] role esVip
-Vip[0..*] role empleadoVip
+Empleado[0..1] role esVip
+Vip[1] role empleadoVip
 end
 
 association clientesDeUnaEmpresa between
@@ -150,10 +150,12 @@ self.trabajo->forAll(empresa | empresa.usuarioDeEmpresa->select(oclIsTypeOf(Vip)
 
 
 --cliente es vip si ha realizado un pedido de más de 1000 euros
---context Cliente inv clienteEsVipDeUnaEmpresaSiHaceUnPedidoMayorDe1000Euros:
---self.pedidoCliente
+context Vip inv clienteVip1000:
+self.oclIsTypeOf(Vip) and self.eurosGastados > 1000
 
 --si es vip, tiene un 10% de descuento en todos sus nuevos pedidos
+context Vip inv clienteVipDescuento:
+self.oclIsTypeOf(Vip) and self.pedidoCliente -> forAll(pedido | pedido.precioTotal = pedido.precioTotal * 0.9)
 
 --si un empleado de una empresa hace un pedido, tiene un 10% de descuento
 
@@ -164,6 +166,8 @@ context Cliente inv clienteNoPuedePedirArticulosQueNoEstenEnAlmacenOQuePidaMasPr
 self.pedidoCliente->forAll(pedido | pedido.dentroDelPedido->forAll(producto |
             producto.vendedor.vendeProducto->exists(p | p.stock >= 0 and p.stock<>null
             implies producto.productoPedido->exists(e | e.unidades <= p.stock) )))
+
+
 --cuando se realiza un pedido, desaparece del almacén (se resta 1 al stock supongo)
 
 --una misma persona no puede tener artículos de más de 10 tipos de productos distintos, independientemente de
