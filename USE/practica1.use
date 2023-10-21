@@ -166,14 +166,14 @@ self.trabajo->forAll(empresa | empresa.usuarioDeEmpresa->select(oclIsTypeOf(Vip)
 
 --si un empleado de una empresa hace un pedido, tiene un 10% de descuento
 
---Un director no puede ser gerente de su misma empresa (esto no sabría hacerlo, consultar)
+--Un director no puede ser gerente de su misma empresa (esto no sabría hacerlo, consultar) 
 
---nadie puede hacer un pedido de artículos que no estén en el almacén
+--nadie puede hacer un pedido de artículos que no estén en el almacén PAPRO
 
---cuando se realiza un pedido, desaparece del almacén (se resta 1 al stock supongo)
+--cuando se realiza un pedido, desaparece del almacén (se resta 1 al stock supongo) PAPRO
 
 --una misma persona no puede tener artículos de más de 10 tipos de productos distintos, independientemente de
---la empresa en donde los compró
+--la empresa en donde los compró PAPRO
 
 --constraints alba
 
