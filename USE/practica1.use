@@ -28,8 +28,8 @@ class Producto
 attributes
 nombre : String
 ID : Integer
-precio : VendeProducto
-unidades : ProductoPedido
+precio : vendeProducto
+unidades : productoPedido
 end
 
 class Cliente
@@ -46,14 +46,8 @@ end
 class Pedido
 attributes
 fecha : String
---precioTotal : Real derive : (self.dentroDelPedido.precio.precio->sum() * self.unidades.unidades)
---precioTotal : Real derive : (self.dentroDelPedido.precio.precio->sum() * self.ProductoPedido.unidades.asSequence()->first())
---precioTotal: Real = (self.dentroDelPedido.precio->sum() * self.ProductoPedido.unidades.asSequence()->first())
---El precio del pedido se calcula automaticamente
---precioTotal : Real derive :
---self.precioTotal = self.dentroDelPedido->collect(p | p -> VendeProducto.precio)->sum()
---Problemas: no podemos aplicar flechita a un producto individual (p), al usar . nos sale operacion no existente.
---Posible solucion: Cambiar el enfoque y hacer un atributo derivado en producto de forma que: el ID pueda repetirse, con indiferencia del precio y la empresa. Coger el precio de ahí.
+precioTotal2 : Real derive :
+self.dentroDelPedido->iterate(producto ; acumulador : Integer = 0 | acumulador + (producto.productoPedido.unidades->sum() * producto.vendeProducto.precio->sum()))
 end
 
 --association trabajaEn between
@@ -78,7 +72,7 @@ Gerente [1] role supervisada_por
 Empresa [1..3] role supervisa
 end
 
-associationclass VendeProducto between
+associationclass vendeProducto between
 Empresa[1..*] role vendedor
 Producto[1..*] role producto
 attributes
@@ -86,7 +80,7 @@ precio : Integer
 stock : Integer
 end
 
-associationclass ProductoPedido between
+associationclass productoPedido between
 Pedido[1..*] role pedido_al_que_pertenece
 Producto[1..*] role dentroDelPedido
 attributes
@@ -141,6 +135,7 @@ context Director inv directorCobraMasQueGerente:
 self.trabajaEn.salario->asSequence()->max() > self.dirige.supervisada_por.trabajaEn.salario->asSequence()->max()
 
 --Un gerente cobra más que los trabajadores base dentro de una misma empresa
+--probar en vez de max() con first()
 context Gerente inv gerenteCobraMasQueTrabajadoresBase:
 self.trabajaEn.salario->asSequence()->max() >
 self.supervisa.empleado->select(oclIsTypeOf(TrabajadorBase)).trabajaEn.salario->asSequence()->max()
@@ -166,14 +161,14 @@ self.trabajo->forAll(empresa | empresa.usuarioDeEmpresa->select(oclIsTypeOf(Vip)
 
 --si un empleado de una empresa hace un pedido, tiene un 10% de descuento
 
---Un director no puede ser gerente de su misma empresa (esto no sabría hacerlo, consultar) 
+--Un director no puede ser gerente de su misma empresa (esto no sabría hacerlo, consultar)
 
---nadie puede hacer un pedido de artículos que no estén en el almacén PAPRO
+--nadie puede hacer un pedido de artículos que no estén en el almacén
 
---cuando se realiza un pedido, desaparece del almacén (se resta 1 al stock supongo) PAPRO
+--cuando se realiza un pedido, desaparece del almacén (se resta 1 al stock supongo)
 
 --una misma persona no puede tener artículos de más de 10 tipos de productos distintos, independientemente de
---la empresa en donde los compró PAPRO
+--la empresa en donde los compró
 
 --constraints alba
 
@@ -182,8 +177,15 @@ context Empleado inv empleadoEdadMayorDeEdad:
 self.edad >= 18
 
 --Un pedido debe tener un valor minimo
---context Pedido inv pedidoValorMinimo2:
---self.dentroDelPedido->iterate(producto ; acumulador : Integer = 0 | acumulador + producto)
+
+--esto no funciona bien, porque no cuenta con que puedes pedir mas unidades de un mismo producto y asi llegar
+--al tope del valor minimo. tendriamos que poner un atributo precioTotal en pedido y comprobar que ese precio total
+--es mayor o igual al precio minimo que impone la empresa
+--la sintaxis de pedidoValorMinimo2 es la que nos dijo el profe que era mejor implementar
+context Pedido inv pedidoValorMinimo2:
+self.dentroDelPedido->iterate(producto ; acumulador : Integer = 0 | acumulador + producto.vendeProducto.precio->asSequence()->first()) >=
+self.dentroDelPedido.vendedor.valMinPedidos->iterate(e; acumulador: Integer = null | e)
+
 
 -- Un pedido debe tener un valor mínimo
 context Pedido inv pedidoValorMinimo:
