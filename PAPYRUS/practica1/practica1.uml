@@ -98,17 +98,6 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9YIUgmfSEe6uM5YCjPBeew" value="*"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_aW9bUGfTEe6uM5YCjPBeew" memberEnd="_aW-CYmfTEe6uM5YCjPBeew _aW-pcWfTEe6uM5YCjPBeew">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aW-CYGfTEe6uM5YCjPBeew" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aW-CYWfTEe6uM5YCjPBeew" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_aW-pcWfTEe6uM5YCjPBeew" name="comprador" type="_1wZ84GfMEe6uM5YCjPBeew" association="_aW9bUGfTEe6uM5YCjPBeew">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eV4vAGfTEe6uM5YCjPBeew" value="*"/>
-    </ownedEnd>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_aW-CYmfTEe6uM5YCjPBeew" name="pedidoCliente" type="_9vlZ8GfMEe6uM5YCjPBeew" association="_aW9bUGfTEe6uM5YCjPBeew">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aW-pcGfTEe6uM5YCjPBeew" value="*"/>
-    </ownedEnd>
-  </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_p3aRcGfTEe6uM5YCjPBeew" memberEnd="_p3a4gmfTEe6uM5YCjPBeew _p3a4hWfTEe6uM5YCjPBeew">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_p3a4gGfTEe6uM5YCjPBeew" source="org.eclipse.papyrus">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_p3a4gWfTEe6uM5YCjPBeew" key="nature" value="UML_Nature"/>
@@ -160,6 +149,15 @@
     <ownedEnd xmi:type="uml:Property" xmi:id="_TdzaInDyEe65bqnE6KgbEw" name="dentroDelPedido" type="_7a9E4GfMEe6uM5YCjPBeew" association="_TdyzEHDyEe65bqnE6KgbEw">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8rH3EHDyEe65bqnE6KgbEw" value="*"/>
     </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_f9yUoHENEe6wGtU2AelpJg" memberEnd="_f91X8HENEe6wGtU2AelpJg _f91X83ENEe6wGtU2AelpJg">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_f90J0HENEe6wGtU2AelpJg" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f90w4HENEe6wGtU2AelpJg" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_f91X83ENEe6wGtU2AelpJg" name="pedidoCliente" type="_9vlZ8GfMEe6uM5YCjPBeew" association="_f9yUoHENEe6wGtU2AelpJg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nQdRAHENEe6wGtU2AelpJg" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_f91X8HENEe6wGtU2AelpJg" name="comprador" type="_1wZ84GfMEe6uM5YCjPBeew" association="_f9yUoHENEe6wGtU2AelpJg"/>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GBgFcGfQEe6uM5YCjPBeew">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GBjv0GfQEe6uM5YCjPBeew" source="http://www.eclipse.org/uml2/2.0.0/UML">
