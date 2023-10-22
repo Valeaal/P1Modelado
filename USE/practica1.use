@@ -1,3 +1,4 @@
+--merge alvaro y carla + papro
 model Practica1
 
 class Empleado
@@ -21,7 +22,7 @@ attributes
 nombre : String
 nEmpleados : Integer
 productos : Integer
-valMinPedidos : Integer
+valMinPedidos : Real
 end
 
 class Producto
@@ -32,14 +33,23 @@ end
 
 class Cliente
 attributes
-eurosGastados : Integer
+eurosGastados : Real
 usuario : String
 contrasena : String
+
+--transferir producto comprado a un cliente
+operations
+    transferirProducto(producto : Producto, cantidad : Integer)
+    pre: producto<>null and cantidad>0
+    post:
+        self.pertenece_a->includes(producto)
+        and producto.productoPedido->exists(p |
+        p.dentroDelPedido.posee->exists(cliente | cliente=self) and p.unidades = cantidad)
+        and producto.vendedor.vendeProducto->exists(e | e.producto = producto and e.stock = e.stock@pre - cantidad) --Carga el stock de la pre condicion y le resta la cantidad asignada
 end
 
 class Vip < Cliente
 end
-
 
 class Pedido
 attributes
@@ -84,8 +94,8 @@ unidades : Integer
 end
 
 association EmpleadoEsVipDeEmpresa between
-Empleado[0..*] role esVip
-Vip[0..*] role empleadoVip
+Empleado[1] role esVip
+Vip[0..3] role empleadoVip --un empleado puede ser vip de 3 empresas
 end
 
 association clientesDeUnaEmpresa between
@@ -96,6 +106,11 @@ end
 association clienteHacePedido between
 Cliente[1..*] role comprador
 Pedido[1..*] role pedidoCliente
+end
+
+association poseeProducto between
+Cliente[0..*] role posee
+Producto[0..*] role pertenece_a
 end
 
 constraints
@@ -129,37 +144,29 @@ context Director inv directorCobraMasQueGerente:
 self.trabajaEn.salario->asSequence()->max() > self.dirige.supervisada_por.trabajaEn.salario->asSequence()->max()
 
 --Un gerente cobra más que los trabajadores base dentro de una misma empresa
---probar en vez de max() con first()
 context Gerente inv gerenteCobraMasQueTrabajadoresBase:
 self.trabajaEn.salario->asSequence()->max() >
 self.supervisa.empleado->select(oclIsTypeOf(TrabajadorBase)).trabajaEn.salario->asSequence()->max()
 
 --Un director cobra más que los trabajadores base dentro de una misma empresa
---(esta restricción y la de arriba podrían unirse
---en una sola, ya lo bichearé, pero dividiendola se queda mas sencilla)
 context Director inv directorCobraMasQueTrabajadoresBase:
 self.trabajaEn.salario->asSequence()->max() > 
 self.dirige.empleado->select(oclIsTypeOf(TrabajadorBase)).trabajaEn.salario->asSequence()->max()
-
---un empleado es vip de su propia empresa
---(no estoy segura de si esta restricción hay que añadirla, quizás se entiende con solo el diagrama)
-context Empleado inv empleadoEsVipDeSuPropiaEmpresa:
-self.trabajo->forAll(empresa | empresa.usuarioDeEmpresa->select(oclIsTypeOf(Vip))->includes(self))
 
 --cliente es vip si ha realizado un pedido de más de 1000 euros
 context Vip inv clienteVip1000:
 self.oclIsTypeOf(Vip) and self.eurosGastados > 1000
 
---nadie puede hacer un pedido de artículos que no estén en el almacén
-context Cliente inv clienteNoPuedePedirArticulosQueNoEstenEnAlmacenOQuePidaMasProductosQueLosExistentes:  
+--nadie puede hacer un pedido de artículos que no estén en el almacén y lo hace dueño de ese producto
+context Cliente inv clienteNoPuedePedirArticulosQueNoEstenEnAlmacenOQuePidaMasProductosQueLosExistentesYDespuesSeHaceDueno:  
 self.pedidoCliente->forAll(pedido | pedido.dentroDelPedido->forAll(producto |
-            producto.vendedor.vendeProducto->exists(p | p.stock >= 0 and p.stock<>null
-            implies producto.productoPedido->exists(e | e.unidades <= p.stock) )))
---cuando se realiza un pedido, desaparece del almacén (se resta 1 al stock supongo)
+            pedido.dentroDelPedido->forAll(producto |
+            producto.vendedor.vendeProducto->exists(p | p.stock <> null implies p.stock >=0 and
+            producto.productoPedido -> exists(e | e.unidades <= p.stock))) and 
+            self.pertenece_a->includes(producto)))
 
 --una misma persona no puede tener artículos de más de 10 tipos de productos distintos, independientemente de
 --la empresa en donde los compró
-
 context Cliente inv clienteNoPuedeTenerMasDe10Articulos:
 self.pedidoCliente->forAll(pedido |
         let sumaUnidades = pedido.dentroDelPedido->collect(producto | producto.productoPedido.unidades)->sum() 
@@ -172,7 +179,6 @@ self.edad >= 18
 
 --Un pedido debe tener un valor minimo
 context Pedido inv pedidoValorMinimo:
---self.precioTotal >= self.dentroDelPedido.vendedor.valMinPedidos->asSequence()->first()
 self.precioTotal >= self.dentroDelPedido.vendedor->select(empresa | empresa.producto.pedido_al_que_pertenece->includes(self)).valMinPedidos->asSequence()->first()
 --podemos poner first() en el valMinPedidos porque aunque se lea como una secuencia, un pedido
 --va a pertenecer exclusivamente a un solo vendedor. no puede haber un mismo pedido de dos vendedores distintos
