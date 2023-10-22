@@ -33,9 +33,9 @@ end
 
 class Cliente
 attributes
-eurosGastados : Real
 usuario : String
 contrasena : String
+eurosGastados : Real derive: self.pedidoCliente.precioTotal->sum() 
 
 --transferir producto comprado a un cliente
 operations
@@ -54,11 +54,15 @@ end
 class Pedido
 attributes
 fecha : String
-precioTotal : Real derive :
-self.dentroDelPedido->iterate(producto ; acumulador : Integer = 0 | 
-acumulador + (producto.productoPedido.unidades->sum() * producto.vendeProducto.precio->sum())) - 
-if (self.comprador->exists(cliente | cliente.oclIsTypeOf(Vip))) then (self.dentroDelPedido->iterate(producto ; acumulador : Integer = 0 |
-acumulador + (producto.productoPedido.unidades->sum() * producto.vendeProducto.precio->sum())) * 0.1) else 0 endif
+precioTotal : Real derive : --Crea la variable precioBase para actualizarla en funcion de si es vip o superior a 1000, creo que es un poco más intuitivo
+let precioBase = self.dentroDelPedido->iterate(producto ; acumulador : Real = 0 | 
+    acumulador + (producto.productoPedido.unidades->sum() * producto.vendeProducto.precio->sum()))
+    in
+    if (self.comprador->exists(cliente | cliente.oclIsTypeOf(Vip)) or precioBase >= 1000) then
+        precioBase - (precioBase* 0.1) 
+    else 
+        precioBase
+    endif
 end
 
 associationclass trabajaEn between
