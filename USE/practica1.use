@@ -114,7 +114,7 @@ end
 
 association poseeProducto between
 Cliente[0..*] role posee
-Producto[0..*] role pertenece_a
+Producto[0..10] role pertenece_a
 end
 
 constraints
