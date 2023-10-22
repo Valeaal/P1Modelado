@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram_Layout version="13">
+<?xml version="1.0" encoding="windows-1252"?><diagram_Layout version="13">
     <diagramOptions>
         <autolayout>false</autolayout>
         <antialiasing>false</antialiasing>
@@ -12,32 +12,32 @@
     <node id="Empleado" sizeCalculated="true" type="Class">
         <name>Empleado</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>70.0</x>
-            <y>242.0</y>
+            <x>395.0</x>
+            <y>309.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Empresa" sizeCalculated="true" type="Class">
         <name>Empresa</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>300.0</x>
-            <y>107.0</y>
+            <x>708.0</x>
+            <y>175.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Producto" sizeCalculated="true" type="Class">
         <name>Producto</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>754.0</x>
-            <y>106.0</y>
+            <x>1103.0</x>
+            <y>191.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="productoPedido" sizeCalculated="true" type="Class">
         <name>productoPedido</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-            <userOffsetX>-1.0</userOffsetX>
-            <userOffsetY>-32.0</userOffsetY>
+            <userOffsetX>94.0</userOffsetX>
+            <userOffsetY>-30.0</userOffsetY>
             <basisDeltaX>ABSOLUTE</basisDeltaX>
             <deltaX>0.0</deltaX>
             <maxDeltaX>1.7976931348623157E308</maxDeltaX>
@@ -53,7 +53,7 @@
         <name>vendeProducto</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
             <userOffsetX>0.0</userOffsetX>
-            <userOffsetY>0.0</userOffsetY>
+            <userOffsetY>59.0</userOffsetY>
             <basisDeltaX>ABSOLUTE</basisDeltaX>
             <deltaX>0.0</deltaX>
             <maxDeltaX>1.7976931348623157E308</maxDeltaX>
@@ -68,40 +68,40 @@
     <node id="Gerente" sizeCalculated="true" type="Class">
         <name>Gerente</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>91.0</x>
-            <y>14.0</y>
+            <x>416.0</x>
+            <y>90.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Pedido" sizeCalculated="true" type="Class">
         <name>Pedido</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>773.0</x>
-            <y>391.0</y>
+            <x>1098.0</x>
+            <y>458.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Director" sizeCalculated="true" type="Class">
         <name>Director</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>129.0</x>
-            <y>136.0</y>
+            <x>452.0</x>
+            <y>208.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="TrabajadorBase" sizeCalculated="true" type="Class">
         <name>TrabajadorBase</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>9.0</x>
-            <y>174.0</y>
+            <x>250.0</x>
+            <y>332.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="trabajaEn" sizeCalculated="true" type="Class">
         <name>trabajaEn</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-            <userOffsetX>43.0</userOffsetX>
-            <userOffsetY>46.0</userOffsetY>
+            <userOffsetX>-156.0</userOffsetX>
+            <userOffsetY>-92.0</userOffsetY>
             <basisDeltaX>ABSOLUTE</basisDeltaX>
             <deltaX>0.0</deltaX>
             <maxDeltaX>1.7976931348623157E308</maxDeltaX>
@@ -116,16 +116,16 @@
     <node id="Vip" sizeCalculated="true" type="Class">
         <name>Vip</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>102.0</x>
-            <y>405.0</y>
+            <x>425.0</x>
+            <y>475.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Cliente" sizeCalculated="true" type="Class">
         <name>Cliente</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>299.0</x>
-            <y>383.0</y>
+            <x>707.0</x>
+            <y>450.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
@@ -134,20 +134,6 @@
         <target>Cliente</target>
         <name>clientesDeUnaEmpresa</name>
         <properties>
-            <edgeproperty id="clientesDeUnaEmpresa::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
-                <name>clientesDeUnaEmpresa</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <offsetX>0.0</offsetX>
-                    <offsetY>-10.0</offsetY>
-                    <related length="2">
-                        <related0>clientesDeUnaEmpresa::WayPoint::0</related0>
-                        <related1>clientesDeUnaEmpresa::WayPoint::1</related1>
-                    </related>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="clientesDeUnaEmpresa::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
                 <name>1..*</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
@@ -172,6 +158,20 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
+            <edgeproperty id="clientesDeUnaEmpresa::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
+                <name>clientesDeUnaEmpresa</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <offsetX>0.0</offsetX>
+                    <offsetY>-10.0</offsetY>
+                    <related length="2">
+                        <related0>clientesDeUnaEmpresa::WayPoint::0</related0>
+                        <related1>clientesDeUnaEmpresa::WayPoint::1</related1>
+                    </related>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
             <edgeproperty id="clientesDeUnaEmpresa::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
                 <name>*</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
@@ -184,11 +184,11 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="clientesDeUnaEmpresa::target::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+            <edgeproperty id="clientesDeUnaEmpresa::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>usuarioDeEmpresa</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                    <userOffsetX>107.0</userOffsetX>
+                    <userOffsetY>1.0</userOffsetY>
                     <attached>clientesDeUnaEmpresa::WayPoint::1</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -226,20 +226,6 @@
         <target>Vip</target>
         <name>EmpleadoEsVipDeEmpresa</name>
         <properties>
-            <edgeproperty id="EmpleadoEsVipDeEmpresa::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
-                <name>EmpleadoEsVipDeEmpresa</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <offsetX>0.0</offsetX>
-                    <offsetY>-10.0</offsetY>
-                    <related length="2">
-                        <related0>EmpleadoEsVipDeEmpresa::WayPoint::0</related0>
-                        <related1>EmpleadoEsVipDeEmpresa::WayPoint::1</related1>
-                    </related>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="EmpleadoEsVipDeEmpresa::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>esVip</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
@@ -264,15 +250,17 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="EmpleadoEsVipDeEmpresa::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
-                <name>*</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>27.0</userOffsetX>
-                    <userOffsetY>5.0</userOffsetY>
-                    <attached>EmpleadoEsVipDeEmpresa::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
+            <edgeproperty id="EmpleadoEsVipDeEmpresa::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
+                <name>EmpleadoEsVipDeEmpresa</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <offsetX>0.0</offsetX>
+                    <offsetY>-10.0</offsetY>
+                    <related length="2">
+                        <related0>EmpleadoEsVipDeEmpresa::WayPoint::0</related0>
+                        <related1>EmpleadoEsVipDeEmpresa::WayPoint::1</related1>
+                    </related>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -285,6 +273,18 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="EmpleadoEsVipDeEmpresa::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
+                <name>*</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>27.0</userOffsetX>
+                    <userOffsetY>5.0</userOffsetY>
+                    <attached>EmpleadoEsVipDeEmpresa::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -318,20 +318,6 @@
         <target>Empresa</target>
         <name>Direccion</name>
         <properties>
-            <edgeproperty id="Direccion::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
-                <name>Direccion</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <offsetX>0.0</offsetX>
-                    <offsetY>-10.0</offsetY>
-                    <related length="2">
-                        <related0>Direccion::WayPoint::0</related0>
-                        <related1>Direccion::WayPoint::1</related1>
-                    </related>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="Direccion::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
                 <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
@@ -356,11 +342,25 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
+            <edgeproperty id="Direccion::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
+                <name>Direccion</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <offsetX>0.0</offsetX>
+                    <offsetY>-10.0</offsetY>
+                    <related length="2">
+                        <related0>Direccion::WayPoint::0</related0>
+                        <related1>Direccion::WayPoint::1</related1>
+                    </related>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
             <edgeproperty id="Direccion::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
                 <name>1..3</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>-34.0</userOffsetX>
-                    <userOffsetY>12.0</userOffsetY>
+                    <userOffsetX>-8.0</userOffsetX>
+                    <userOffsetY>-12.0</userOffsetY>
                     <attached>Direccion::WayPoint::1</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -410,20 +410,6 @@
         <target>Empresa</target>
         <name>Gerencia</name>
         <properties>
-            <edgeproperty id="Gerencia::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
-                <name>Gerencia</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <offsetX>0.0</offsetX>
-                    <offsetY>-10.0</offsetY>
-                    <related length="2">
-                        <related0>Gerencia::WayPoint::0</related0>
-                        <related1>Gerencia::WayPoint::1</related1>
-                    </related>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="Gerencia::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
                 <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
@@ -439,9 +425,35 @@
             <edgeproperty id="Gerencia::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>supervisada_por</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>93.0</userOffsetX>
-                    <userOffsetY>-20.0</userOffsetY>
+                    <userOffsetX>23.0</userOffsetX>
+                    <userOffsetY>-14.0</userOffsetY>
                     <attached>Gerencia::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="Gerencia::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
+                <name>Gerencia</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <offsetX>0.0</offsetX>
+                    <offsetY>-10.0</offsetY>
+                    <related length="2">
+                        <related0>Gerencia::WayPoint::0</related0>
+                        <related1>Gerencia::WayPoint::2</related1>
+                    </related>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="Gerencia::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>supervisa</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>65.0</userOffsetX>
+                    <userOffsetY>2.0</userOffsetY>
+                    <attached>Gerencia::WayPoint::2</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>TOP</placement>
@@ -451,24 +463,12 @@
             <edgeproperty id="Gerencia::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
                 <name>1..3</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>20.0</userOffsetX>
-                    <userOffsetY>-12.0</userOffsetY>
-                    <attached>Gerencia::WayPoint::1</attached>
+                    <userOffsetX>2.0</userOffsetX>
+                    <userOffsetY>2.0</userOffsetY>
+                    <attached>Gerencia::WayPoint::2</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="Gerencia::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>supervisa</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>79.0</userOffsetX>
-                    <userOffsetY>-17.0</userOffsetY>
-                    <attached>Gerencia::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -486,6 +486,16 @@
             </edgeproperty>
             <edgeproperty id="Gerencia::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
                 <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+                    <x>772.0</x>
+                    <y>97.0</y>
+                </strategy>
+                <id>1</id>
+                <specialid>0</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="Gerencia::WayPoint::2" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
+                <name>2</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
                     <userOffsetX>72.0</userOffsetX>
                     <userOffsetY>5.732469023360977</userOffsetY>
@@ -498,7 +508,7 @@
                     <corner>NORTH_WEST</corner>
                     <relativeNodeId>Empresa</relativeNodeId>
                 </strategy>
-                <id>1</id>
+                <id>2</id>
                 <specialid>2</specialid>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -510,6 +520,30 @@
         <target>Pedido</target>
         <name>clienteHacePedido</name>
         <properties>
+            <edgeproperty id="clienteHacePedido::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
+                <name>1..*</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>10.0</userOffsetX>
+                    <userOffsetY>-12.0</userOffsetY>
+                    <attached>clienteHacePedido::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="clienteHacePedido::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>comprador</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>3.0</userOffsetX>
+                    <userOffsetY>10.0</userOffsetY>
+                    <attached>clienteHacePedido::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
             <edgeproperty id="clienteHacePedido::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
                 <name>clienteHacePedido</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
@@ -524,24 +558,12 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="clienteHacePedido::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>comprador</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>22.0</userOffsetX>
-                    <userOffsetY>14.0</userOffsetY>
-                    <attached>clienteHacePedido::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="clienteHacePedido::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
+            <edgeproperty id="clienteHacePedido::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
                 <name>1..*</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
                     <userOffsetX>-1.0</userOffsetX>
-                    <userOffsetY>15.0</userOffsetY>
-                    <attached>clienteHacePedido::WayPoint::0</attached>
+                    <userOffsetY>-11.0</userOffsetY>
+                    <attached>clienteHacePedido::WayPoint::1</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
@@ -557,18 +579,6 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="clienteHacePedido::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
-                <name>1..*</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>-82.0</userOffsetX>
-                    <userOffsetY>18.0</userOffsetY>
-                    <attached>clienteHacePedido::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -602,6 +612,30 @@
         <target>Producto</target>
         <name>productoPedido</name>
         <properties>
+            <edgeproperty id="productoPedido::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>pedido_al_que_pertenece</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>145.0</userOffsetX>
+                    <userOffsetY>-8.0</userOffsetY>
+                    <attached>productoPedido::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="productoPedido::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
+                <name>1..*</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>1.0</userOffsetX>
+                    <userOffsetY>-8.0</userOffsetY>
+                    <attached>productoPedido::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
             <edgeproperty id="productoPedido::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
                 <name>productoPedido</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
@@ -616,24 +650,12 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="productoPedido::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>pedido_al_que_pertenece</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>2.0</userOffsetX>
-                    <userOffsetY>-1.0</userOffsetY>
-                    <attached>productoPedido::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="productoPedido::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
+            <edgeproperty id="productoPedido::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
                 <name>1..*</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>-147.0</userOffsetX>
-                    <userOffsetY>-3.0</userOffsetY>
-                    <attached>productoPedido::WayPoint::0</attached>
+                    <userOffsetX>-90.0</userOffsetX>
+                    <userOffsetY>13.0</userOffsetY>
+                    <attached>productoPedido::WayPoint::1</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
@@ -652,25 +674,21 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="productoPedido::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
-                <name>1..*</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>-90.0</userOffsetX>
-                    <userOffsetY>13.0</userOffsetY>
-                    <attached>productoPedido::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
         </properties>
         <waypoints>
-            <edgeproperty id="productoPedido::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+            <edgeproperty id="productoPedido::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
                 <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>51.421942664442895</userOffsetX>
                     <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>1.7976931348623157E308</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>1.7976931348623157E308</maxDeltaY>
+                    <corner>NORTH_WEST</corner>
+                    <relativeNodeId>Pedido</relativeNodeId>
                 </strategy>
                 <id>0</id>
                 <specialid>1</specialid>
@@ -710,8 +728,8 @@
             <node id="productoPedido" sizeCalculated="true" type="Class">
                 <name>productoPedido</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-                    <userOffsetX>-1.0</userOffsetX>
-                    <userOffsetY>-32.0</userOffsetY>
+                    <userOffsetX>94.0</userOffsetX>
+                    <userOffsetY>-30.0</userOffsetY>
                     <basisDeltaX>ABSOLUTE</basisDeltaX>
                     <deltaX>0.0</deltaX>
                     <maxDeltaX>1.7976931348623157E308</maxDeltaX>
@@ -730,20 +748,6 @@
         <target>Producto</target>
         <name>vendeProducto</name>
         <properties>
-            <edgeproperty id="vendeProducto::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
-                <name>vendeProducto</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <offsetX>0.0</offsetX>
-                    <offsetY>-10.0</offsetY>
-                    <related length="2">
-                        <related0>vendeProducto::WayPoint::0</related0>
-                        <related1>vendeProducto::WayPoint::1</related1>
-                    </related>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="vendeProducto::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>vendedor</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
@@ -765,6 +769,20 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="vendeProducto::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
+                <name>vendeProducto</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <offsetX>0.0</offsetX>
+                    <offsetY>-10.0</offsetY>
+                    <related length="2">
+                        <related0>vendeProducto::WayPoint::0</related0>
+                        <related1>vendeProducto::WayPoint::1</related1>
+                    </related>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -839,7 +857,7 @@
                 <name>vendeProducto</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
                     <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                    <userOffsetY>59.0</userOffsetY>
                     <basisDeltaX>ABSOLUTE</basisDeltaX>
                     <deltaX>0.0</deltaX>
                     <maxDeltaX>1.7976931348623157E308</maxDeltaX>
@@ -858,20 +876,6 @@
         <target>Empresa</target>
         <name>trabajaEn</name>
         <properties>
-            <edgeproperty id="trabajaEn::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
-                <name>trabajaEn</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <offsetX>0.0</offsetX>
-                    <offsetY>-10.0</offsetY>
-                    <related length="2">
-                        <related0>trabajaEn::WayPoint::0</related0>
-                        <related1>trabajaEn::WayPoint::1</related1>
-                    </related>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="trabajaEn::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>empleado</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
@@ -896,12 +900,26 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
+            <edgeproperty id="trabajaEn::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
+                <name>trabajaEn</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <offsetX>0.0</offsetX>
+                    <offsetY>-10.0</offsetY>
+                    <related length="2">
+                        <related0>trabajaEn::WayPoint::0</related0>
+                        <related1>trabajaEn::WayPoint::4</related1>
+                    </related>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
             <edgeproperty id="trabajaEn::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>trabajo</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>64.0</userOffsetX>
-                    <userOffsetY>17.0</userOffsetY>
-                    <attached>trabajaEn::WayPoint::1</attached>
+                    <userOffsetX>48.0</userOffsetX>
+                    <userOffsetY>2.0</userOffsetY>
+                    <attached>trabajaEn::WayPoint::4</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>TOP</placement>
@@ -911,9 +929,9 @@
             <edgeproperty id="trabajaEn::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
                 <name>0..3</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>19.0</userOffsetX>
-                    <userOffsetY>16.0</userOffsetY>
-                    <attached>trabajaEn::WayPoint::1</attached>
+                    <userOffsetX>-1.0</userOffsetX>
+                    <userOffsetY>1.0</userOffsetY>
+                    <attached>trabajaEn::WayPoint::4</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
@@ -932,42 +950,75 @@
                 <specialid>1</specialid>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="trabajaEn::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+            <edgeproperty id="trabajaEn::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
                 <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+                    <x>661.0</x>
+                    <y>341.0</y>
                 </strategy>
                 <id>1</id>
+                <specialid>0</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="trabajaEn::WayPoint::2" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
+                <name>2</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+                    <x>717.0</x>
+                    <y>341.0</y>
+                </strategy>
+                <id>2</id>
+                <specialid>0</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="trabajaEn::WayPoint::3" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
+                <name>3</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+                    <x>717.0</x>
+                    <y>341.0</y>
+                </strategy>
+                <id>3</id>
+                <specialid>0</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="trabajaEn::WayPoint::4" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
+                <name>4</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>18.93276503361551</userOffsetX>
+                    <userOffsetY>91.0</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>1.7976931348623157E308</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>1.7976931348623157E308</maxDeltaY>
+                    <corner>NORTH_WEST</corner>
+                    <relativeNodeId>Empresa</relativeNodeId>
+                </strategy>
+                <id>4</id>
                 <specialid>2</specialid>
                 <hidden>false</hidden>
             </edgeproperty>
         </waypoints>
         <hidden>false</hidden>
         <connectionNode>
-            <edgeproperty id="trabajaEn::WayPoint::-1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="false">
+            <edgeproperty id="trabajaEn::WayPoint::-1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
                 <name>-1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyIdentity">
                     <userOffsetX>0.0</userOffsetX>
                     <userOffsetY>0.0</userOffsetY>
-                    <offsetX>0.0</offsetX>
-                    <offsetY>0.0</offsetY>
-                    <related length="2">
-                        <related0>trabajaEn::WayPoint::0</related0>
-                        <related1>trabajaEn::WayPoint::1</related1>
-                    </related>
+                    <identitySource>trabajaEn::WayPoint::2</identitySource>
                 </strategy>
                 <id>-1</id>
                 <specialid>7</specialid>
-                <hidden>true</hidden>
+                <hidden>false</hidden>
             </edgeproperty>
         </connectionNode>
         <associationClass>
             <node id="trabajaEn" sizeCalculated="true" type="Class">
                 <name>trabajaEn</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-                    <userOffsetX>43.0</userOffsetX>
-                    <userOffsetY>46.0</userOffsetY>
+                    <userOffsetX>-156.0</userOffsetX>
+                    <userOffsetY>-92.0</userOffsetY>
                     <basisDeltaX>ABSOLUTE</basisDeltaX>
                     <deltaX>0.0</deltaX>
                     <maxDeltaX>1.7976931348623157E308</maxDeltaX>
@@ -1050,11 +1101,19 @@
                 <specialid>1</specialid>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="Generalization::Director::Empleado::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+            <edgeproperty id="Generalization::Director::Empleado::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
                 <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>79.73330458323281</userOffsetX>
+                    <userOffsetY>-1.0</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>1.7976931348623157E308</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>1.7976931348623157E308</maxDeltaY>
+                    <corner>NORTH_WEST</corner>
+                    <relativeNodeId>Empleado</relativeNodeId>
                 </strategy>
                 <id>1</id>
                 <specialid>2</specialid>
@@ -1101,8 +1160,8 @@
             <edgeproperty id="Generalization::TrabajadorBase::Empleado::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
                 <name>0</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-                    <userOffsetX>72.0</userOffsetX>
-                    <userOffsetY>28.09130434782609</userOffsetY>
+                    <userOffsetX>112.0</userOffsetX>
+                    <userOffsetY>15.091304347826089</userOffsetY>
                     <basisDeltaX>ABSOLUTE</basisDeltaX>
                     <deltaX>0.0</deltaX>
                     <maxDeltaX>1.7976931348623157E308</maxDeltaX>
@@ -1116,13 +1175,31 @@
                 <specialid>1</specialid>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="Generalization::TrabajadorBase::Empleado::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+            <edgeproperty id="Generalization::TrabajadorBase::Empleado::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
                 <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+                    <x>356.0</x>
+                    <y>339.0</y>
                 </strategy>
                 <id>1</id>
+                <specialid>0</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="Generalization::TrabajadorBase::Empleado::WayPoint::2" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
+                <name>2</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>38.499754856590414</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>1.7976931348623157E308</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>1.7976931348623157E308</maxDeltaY>
+                    <corner>NORTH_WEST</corner>
+                    <relativeNodeId>Empleado</relativeNodeId>
+                </strategy>
+                <id>2</id>
                 <specialid>2</specialid>
                 <hidden>false</hidden>
             </edgeproperty>
