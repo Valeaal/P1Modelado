@@ -157,7 +157,7 @@ self.dirige.empleado->select(oclIsTypeOf(TrabajadorBase)).trabajaEn.salario->asS
 
 --cliente es vip si ha realizado un pedido de más de 1000 euros
 context Vip inv clienteVip1000:
-self.oclIsTypeOf(Vip) and self.eurosGastados > 1000
+self.oclIsTypeOf(Vip) and self.esVip->isEmpty() implies self.eurosGastados > 1000
 
 --nadie puede hacer un pedido de artículos que no estén en el almacén y lo hace dueño de ese producto
 context Cliente inv clienteNoPuedePedirArticulosQueNoEstenEnAlmacenOQuePidaMasProductosQueLosExistentesYDespuesSeHaceDueno:  
@@ -167,13 +167,6 @@ self.pedidoCliente->forAll(pedido | pedido.dentroDelPedido->forAll(producto |
             producto.productoPedido -> exists(e | e.unidades <= p.stock))) and 
             self.pertenece_a->includes(producto)))
 
---una misma persona no puede tener artículos de más de 10 tipos de productos distintos, independientemente de
---la empresa en donde los compró
-context Cliente inv clienteNoPuedeTenerMasDe10Articulos:
-self.pedidoCliente->forAll(pedido |
-        let sumaUnidades = pedido.dentroDelPedido->collect(producto | producto.productoPedido.unidades)->sum() 
-        in
-        sumaUnidades <= 10)
 
 -- Un empleado debe ser mayor de edad
 context Empleado inv empleadoEdadMayorDeEdad:
@@ -193,3 +186,14 @@ producto.vendeProducto->select(empresa | empresa.producto.pedido_al_que_pertenec
 then acumulador +1 else acumulador endif)) = self.dentroDelPedido->size()
 
 --no puedes pedir 0 unidades de un producto
+context productoPedido inv unidadesNoNulas:
+self.unidades > 0
+
+--una misma persona no puede tener artículos de más de 10 tipos de productos distintos, independientemente de la empresa en donde los compró
+--asSet() hace que se generen objetos unicos con ID diferentes.
+context Cliente inv clienteNoPuedeTenerMasDe10ArticulosDiferentes:
+self.pedidoCliente->forAll(pedido |
+        let productosDiferentes = pedido.dentroDelPedido->select(p | p.productoPedido.unidades<> null and p.productoPedido.unidades->sum()>=1)->asSet()
+        in
+        productosDiferentes->size() <= 10
+    )

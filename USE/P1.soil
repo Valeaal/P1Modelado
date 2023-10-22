@@ -116,18 +116,6 @@
 !insert (Gerente2,Empresa3) into Gerencia
 !insert (Gerente2,Empresa3) into trabajaEn
 !trabajaEn12 := 2400
-!trabajaEn5.salario := 1000
-!trabajaEn4.salario := 1000
-!trabajaEn3.salario := 1000
-!trabajaEn2.salario := 1000
-!trabajaEn6.salario := 1000
-!trabajaEn8.salario := 6000
-!trabajaEn9.salario := 6000
-!trabajaEn7.salario := 6000
-!trabajaEn1.salario := 1000
-!trabajaEn11.salario := 3000
-!trabajaEn12.salario := 3000
-!trabajaEn10.salario := 3000
 !Gerente2.edad := 35
 !Gerente2.dni := '67818563S'
 !Empresa1.valMinPedidos := 75
@@ -138,12 +126,38 @@
 !insert (Pedido1,Producto2) into productoPedido
 !insert (Pedido2,Producto2) into productoPedido
 !insert (Pedido3,Producto2) into productoPedido
-!productoPedido1.unidades := 3
-!productoPedido2.unidades := 2
-!productoPedido4.unidades := 4
+!productoPedido2.unidades := 3
+!productoPedido3.unidades := 4
+!productoPedido1.unidades := 5
 !productoPedido4.unidades := 6
-!productoPedido2.unidades := 8
-!productoPedido1.unidades := 9
-!productoPedido3.unidades := 25
-!productoPedido3.unidades := 14
-!productoPedido3.unidades := 10
+!new Producto
+!insert (Empresa3,Producto3) into vendeProducto
+!vendeProducto5.precio := 900
+!vendeProducto5.stock := 40
+!new Pedido
+!Pedido4.fecha := '22102023'
+!insert (Pedido4,Producto3) into productoPedido
+!productoPedido5.unidades := 2
+!insert (Vip1,Pedido4) into clienteHacePedido
+!trabajaEn5.salario := 1000
+!trabajaEn4.salario := 1000
+!trabajaEn8.salario := 5000
+!trabajaEn6.salario := 1000
+!trabajaEn1.salario := 1000
+!trabajaEn7.salario := 6000
+!trabajaEn11.salario := 3000
+!trabajaEn9.salario := 5000
+!trabajaEn3.salario := 5000
+!trabajaEn12.salario := 3000
+!trabajaEn10.salario := 3000
+!trabajaEn2.salario := 1000
+!trabajaEn8.salario := 6500
+!trabajaEn5.salario := 900
+!trabajaEn12.salario := 2900
+!trabajaEn6.salario := 850
+!trabajaEn2.salario := 1300
+!trabajaEn11.salario := 4200
+!trabajaEn9.salario := 12500
+!trabajaEn1.salario := 950
+!trabajaEn10.salario := 2500
+!trabajaEn3.salario := 680
