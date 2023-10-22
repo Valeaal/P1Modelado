@@ -125,15 +125,33 @@
 !trabajaEn12 := 2400;
 
 
-!insert(Empresa1,Producto1) into vendeProducto(3,15)
-!insert(Empresa1,Producto2) into vendeProducto(4,18)
-!insert(Empresa2,Producto1) into vendeProducto(2,20)
-!insert(Empresa3,Producto1) into vendeProducto(5,30)
+!insert(Empresa1,Producto1) into vendeProducto
+!vendeProducto1.precio:=3
+!vendeProducto1.stock:=15
+
+!insert(Empresa1,Producto2) into vendeProducto
+!vendeProducto2.precio:=4
+!vendeProducto2.stock:=18
+
+!insert(Empresa2,Producto1) into vendeProducto
+!vendeProducto3.precio:=2
+!vendeProducto3.stock:=20
+
+!insert(Empresa3,Producto1) into vendeProducto
+!vendeProducto4.precio:=5
+!vendeProducto4.stock:=30
 
 !insert(Pedido1,Producto1) into productoPedido(10)
+!productoPedido1:=10
+
 !insert(Pedido1,Producto2) into productoPedido(5)
+!productoPedido2:=5
+
 !insert(Pedido2,Producto2) into productoPedido(8)
+!productoPedido3:=8
+
 !insert(Pedido3,Producto2) into productoPedido(8)
+!productoPedido4:=8
 
 !insert(Trabajador2,Vip2) into EmpleadoEsVipDeEmpresa
 
