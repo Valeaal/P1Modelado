@@ -126,10 +126,6 @@
 !insert (Pedido1,Producto2) into productoPedido
 !insert (Pedido2,Producto2) into productoPedido
 !insert (Pedido3,Producto2) into productoPedido
-!productoPedido2.unidades := 3
-!productoPedido3.unidades := 4
-!productoPedido1.unidades := 5
-!productoPedido4.unidades := 6
 !new Producto
 !insert (Empresa3,Producto3) into vendeProducto
 !vendeProducto5.precio := 900
@@ -139,25 +135,24 @@
 !insert (Pedido4,Producto3) into productoPedido
 !productoPedido5.unidades := 2
 !insert (Vip1,Pedido4) into clienteHacePedido
-!trabajaEn5.salario := 1000
-!trabajaEn4.salario := 1000
-!trabajaEn8.salario := 5000
-!trabajaEn6.salario := 1000
-!trabajaEn1.salario := 1000
-!trabajaEn7.salario := 6000
-!trabajaEn11.salario := 3000
-!trabajaEn9.salario := 5000
-!trabajaEn3.salario := 5000
-!trabajaEn12.salario := 3000
-!trabajaEn10.salario := 3000
-!trabajaEn2.salario := 1000
-!trabajaEn8.salario := 6500
-!trabajaEn5.salario := 900
-!trabajaEn12.salario := 2900
-!trabajaEn6.salario := 850
-!trabajaEn2.salario := 1300
-!trabajaEn11.salario := 4200
-!trabajaEn9.salario := 12500
-!trabajaEn1.salario := 950
-!trabajaEn10.salario := 2500
-!trabajaEn3.salario := 680
+!productoPedido2.unidades := 3
+!productoPedido3.unidades := 4
+!productoPedido1.unidades := 5
+!productoPedido4.unidades := 6
+!insert (Vip1,Producto3) into poseeProducto
+!insert (Vip2,Producto2) into poseeProducto
+!insert (Cliente2,Producto2) into poseeProducto
+!insert (Cliente1,Producto1) into poseeProducto
+!insert (Cliente1,Producto2) into poseeProducto
+!trabajaEn5.salario := 980
+!trabajaEn4.salario := 1200
+!trabajaEn8.salario := 1030
+!trabajaEn6.salario := 990
+!trabajaEn12.salario := 3500
+!trabajaEn3.salario := 1008
+!trabajaEn11.salario := 3200
+!trabajaEn9.salario := 6700
+!trabajaEn1.salario := 1115
+!trabajaEn7.salario := 8760
+!trabajaEn10.salario := 3900
+!trabajaEn2.salario := 980
